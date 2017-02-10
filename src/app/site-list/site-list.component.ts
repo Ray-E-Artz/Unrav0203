@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DiveSite } from '../Classes/dive-site';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { DiveSite } from '../classes/dive-site';
 
 @Component({
   selector: 'app-site-list',
@@ -7,7 +7,13 @@ import { DiveSite } from '../Classes/dive-site';
   styleUrls: ['./site-list.component.css']
 })
 export class SiteListComponent implements OnInit {
-  sites = DiveSite.FavoriteSites;
+  @Input() sites: DiveSite[];
+  @Output()onAddNewSite = new EventEmitter();
+
+  addNewSite() {
+    this.onAddNewSite.emit(null);
+  }
+
   constructor() { }
 
   ngOnInit() {

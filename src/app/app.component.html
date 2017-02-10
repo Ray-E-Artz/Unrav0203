@@ -1,5 +1,13 @@
 <div class="container-fluid">
   <h1>Dive Site Maintenance</h1>
-  <app-site-list></app-site-list>
-  <app-add-site></app-add-site>
+  <app-site-list
+    *ngIf="currentView == 'list'"
+    [sites]="sites"
+    (onAddNewSite)="navigateTo('add')">
+  </app-site-list>
+  <app-add-site
+    *ngIf="currentView == 'add'"
+    (onAddThis)="navigateTo('list')"
+    (onCancelThis)="navigateTo('list')">
+  </app-add-site>
 </div>
